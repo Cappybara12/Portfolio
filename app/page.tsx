@@ -15,7 +15,7 @@ import { TRACKS } from "@/lib/tracks";
 import { ArrowUpRight, Mail, ChevronLeft, ChevronRight, Calendar, Users, Zap, Globe, Eye, FileText, Play, Trophy } from "lucide-react";
 
 const VIDEOS = [
-  { id: "KFesgjzK3gk", title: "What is OpenTelemetry?" },
+  { id: "SeZGYUo74QI", title: "OpenTelemetry Full Course" },
   { id: "h5qQ0isJqOM", title: "OTel Collector Too Complex? Try SigNoz Agents" },
   { id: "R5Lui7VK9Ys", title: "OpenTelemetry on Kubernetes" },
   { id: "5YMbyJ7X2ss", title: "OpenTelemetry Docker Setup" },
@@ -284,7 +284,8 @@ export default function Page() {
       </header>
 
       <div className="fixed left-6 top-16 z-30 hidden font-pixel text-sm tracking-[0.25em] text-bone/60 md:left-12 md:block">
-        <span className="text-indigo">▸ now playing</span> {TRACKS[active].label}
+        <span className="text-indigo">▸ now playing</span>{" "}
+        {TRACKS[active].label.split(" — ")[1] ?? TRACKS[active].label}
       </div>
 
       {/* scroll-mode hint — top-right */}
