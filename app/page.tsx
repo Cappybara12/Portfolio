@@ -687,6 +687,14 @@ export default function Page() {
               body="akshay has an exceptional ability to solve complex issues, even when documentation is lacking, highlighting his deep technical expertise and problem-solving skills."
               by="saurabh shubham — founder @ mindcase"
             />
+            <Quote
+              body="i strongly endorse akshay kumar sharma for his exceptional project coordination skills, especially within the tech domain. he is adept at leading teams and managing projects with efficiency. he consistently demonstrates a proactive approach, delivering tasks ahead of schedule. his talent for delegating tasks effectively greatly contributes to the team's success."
+              by="sanskriti kadam — mentor · power bi developer @ prophecy"
+            />
+            <Quote
+              body="i highly recommend akshay, especially for team management. he's great with tech and leading teams. he's shown he can handle projects well and works great with others. he's got lots of skills and is always eager to help out."
+              by="yatharth chauhan — managed directly · building @yatri cloud · aws community builder"
+            />
           </div>
         </Section>
 
