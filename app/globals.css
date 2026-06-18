@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens as rgb triplets so Tailwind alpha modifiers work. */
+/* Responsive bottom padding for sections — clears the PixelCD at all scales */
+:root {
+  --section-pb: min(20vh, 130px);
+}
+@media (min-width: 640px) {
+  :root { --section-pb: min(22vh, 170px); }
+}
+@media (min-width: 768px) {
+  :root { --section-pb: min(24vh, 200px); }
+}
+@media (min-width: 1024px) {
+  :root { --section-pb: min(26vh, 220px); }
+}
+
+:root,
+.theme-dark {
+  --ink: 0 0 0;
+  --bone: 255 255 255;
+  --indigo: 79 70 229;
+  --indigo-dim: 42 37 110;
+  --grid: 255 255 255;
+}
+
+.theme-light {
+  --ink: 245 244 240; /* warm cream "white" */
+  --bone: 12 12 18; /* near black ink */
+  --indigo: 79 70 229;
+  --indigo-dim: 195 192 240;
+  --grid: 0 0 0;
+}
+
+* {
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+html,
+body {
+  background: rgb(var(--ink));
+  color: rgb(var(--bone));
+  font-family: var(--font-body), system-ui, sans-serif;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  overflow: hidden; /* horizontal pager — no native scroll */
+  height: 100vh;
+  margin: 0;
+  transition:
+    background-color 280ms steps(6),
+    color 280ms steps(6);
+}
+
+::selection {
+  background: rgb(var(--indigo));
+  color: rgb(var(--ink));
+}
+
+.pixel-grid {
+  background-image:
+    linear-gradient(rgb(var(--grid) / 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--grid) / 0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgb(var(--grid) / 0.04) 0px,
+    rgb(var(--grid) / 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  z-index: 40;
+}
+
+.vignette::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgb(var(--ink) / 0.55) 100%
+  );
+  z-index: 5;
+}
+
+.pixel-frame {
+  position: relative;
+  border: 2px solid rgb(var(--indigo));
+  background: rgb(var(--ink));
+}
+.pixel-frame::before,
+.pixel-frame::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgb(var(--bone));
+  background: rgb(var(--ink));
+}
+.pixel-frame::before { top: -6px; left: -6px; }
+.pixel-frame::after { bottom: -6px; right: -6px; }
+
+.pixel-underline {
+  position: relative;
+  display: inline-block;
+  transition: color 120ms steps(2);
+}
+.pixel-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: rgb(var(--indigo));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 160ms steps(4);
+}
+.pixel-underline:hover::after { transform: scaleX(1); }
+.pixel-underline:hover { color: rgb(var(--indigo)); }
+
+.glow-indigo {
+  text-shadow:
+    0 0 1px rgb(var(--indigo) / 0.9),
+    0 0 10px rgb(var(--indigo) / 0.35);
+}
+
+/* Continuous slow spin — applied on inner layer of CD */
+@keyframes spin-slow {
+  from { transform: rotateZ(0deg); }
+  to   { transform: rotateZ(360deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes jump-arc {
+  0%   { transform: translateY(0) scaleY(1) scaleX(1); }
+  20%  { transform: translateY(-6px) scaleY(0.82) scaleX(1.18); }
+  50%  { transform: translateY(-44px) scaleY(1.14) scaleX(0.9); }
+  80%  { transform: translateY(-6px) scaleY(0.82) scaleX(1.18); }
+  100% { transform: translateY(0) scaleY(1) scaleX(1); }
+}
+
+@keyframes float-note {
+  0%   { opacity: 0;   transform: translateY(0px)   scale(0.7); }
+  18%  { opacity: 1; }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0;   transform: translateY(-72px) scale(1.1); }
+}
+
+@keyframes blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0; }
+}
+
+.caret::after {
+  content: "_";
+  color: rgb(var(--indigo));
+  animation: blink 1s steps(2) infinite;
+  margin-left: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
