@@ -238,6 +238,7 @@ export default function Page() {
       ty = e.touches[0].clientY;
     };
     const onTouchEnd = (e: TouchEvent) => {
+      if (window.innerWidth < 768) return; // Disable mobile view swipe navigation
       const dx = e.changedTouches[0].clientX - tx;
       const dy = e.changedTouches[0].clientY - ty;
       const d = Math.abs(dx) > Math.abs(dy) ? dx : dy;
@@ -305,7 +306,7 @@ export default function Page() {
       <div className="fixed bottom-5 right-4 z-30 text-right font-pixel text-[10px] leading-tight tracking-[0.1em] md:hidden max-w-[120px] animate-mobile-nudge">
         <span className="text-bone/60">scroll the section you want to know more about. </span>
         <span className="glow-indigo font-bold text-indigo"><br /> </span>
-        <span className="text-bone/60"><br />Use<br />arrows or<br />just swipe through</span>
+        <span className="text-bone/60"><br />Use<br />arrows to<br />switch tracks</span>
       </div>
 
       {/* horizontal track */}

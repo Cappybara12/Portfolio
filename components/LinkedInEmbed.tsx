@@ -30,7 +30,7 @@ export default function LinkedInEmbed({
       </a>
     );
   }
-  const embed = `https://www.linkedin.com/embed/feed/update/${urn}?compact=1`;
+  const embed = `https://www.linkedin.com/embed/feed/update/${urn}`;
   return (
     <figure className="pixel-border-indigo overflow-hidden bg-ink">
       <iframe
