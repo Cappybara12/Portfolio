@@ -39,8 +39,7 @@ export default function PixelCD({ label, activeTrack, dark }: Props) {
       <div className="origin-bottom scale-[0.4] sm:scale-[0.55] md:scale-[0.65] lg:scale-[0.7]">
       {/* character */}
       <div
-        className="absolute left-1/2 -translate-x-1/2"
-        style={{ bottom: 268 }}
+        className="absolute left-1/2 -translate-x-1/2 bottom-[164px] sm:bottom-[268px]"
       >
         <PixelCharacter jumping={jumping} dark={dark} />
       </div>
@@ -49,10 +48,10 @@ export default function PixelCD({ label, activeTrack, dark }: Props) {
       <MusicNotes />
 
       <div
+        className="translate-y-[70%] sm:translate-y-[50%] transition-transform duration-700"
         style={{
           width: 520,
           height: 520,
-          transform: "translateY(50%)",
           perspective: 900,
         }}
       >

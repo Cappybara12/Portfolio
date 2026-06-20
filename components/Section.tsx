@@ -65,7 +65,7 @@ export default function Section({
     <section
       id={id}
       data-index={index}
-      className="relative flex h-screen w-screen flex-shrink-0 flex-col px-4 pt-24 sm:px-6 sm:pt-28 md:px-16"
+      className="relative flex h-screen w-screen flex-shrink-0 flex-col px-4 pt-16 sm:px-6 sm:pt-20 md:pt-28 md:px-16"
       style={{ scrollSnapAlign: "start" }}
     >
       <motion.div
@@ -78,16 +78,16 @@ export default function Section({
         style={{ paddingBottom: "var(--section-pb)" }}
       >
         {title && (
-          <header className="mb-10 shrink-0">
-            <div className="mb-3 flex items-center gap-3 font-pixel text-base tracking-[0.3em] text-indigo">
+          <header className="mb-4 sm:mb-8 md:mb-10 shrink-0">
+            <div className="mb-1.5 sm:mb-3 flex items-center gap-2 sm:gap-3 font-pixel text-xs sm:text-base tracking-[0.25em] sm:tracking-[0.3em] text-indigo">
               <span className="inline-block h-2 w-2 bg-indigo" />
               track {trackNum}
               {kicker && <span className="text-bone/40">// {kicker}</span>}
             </div>
-            <h2 className="font-pixel text-4xl leading-none tracking-wider sm:text-5xl md:text-7xl">
+            <h2 className="font-pixel text-2xl sm:text-4xl md:text-7xl leading-none tracking-wider">
               <span className="text-bone glow-indigo">{title}</span>
             </h2>
-            <div className="mt-4 h-[2px] w-24 bg-indigo" />
+            <div className="mt-2 sm:mt-4 h-[2px] w-16 sm:w-24 bg-indigo" />
           </header>
         )}
 
@@ -121,7 +121,8 @@ export default function Section({
             width: "220vw",
             height: "var(--section-pb)",
             transform: "translateX(-50%)",
-            borderRadius: "50% 50% 0 0 / 72px 72px 0 0",
+            borderRadius:
+              "50% 50% 0 0 / var(--section-pb-radius) var(--section-pb-radius) 0 0",
             background:
               "linear-gradient(to bottom, transparent 0%, rgb(var(--ink)) 32%)",
           }}

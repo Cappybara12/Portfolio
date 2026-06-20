@@ -627,14 +627,14 @@ export default function Page() {
         <Section id="work" index={9} active={active} title="work" kicker="résumé">
           <div className="grid gap-5 md:grid-cols-2">
             {WORK.map((w) => (
-              <article key={w.org} className="pixel-frame p-6 transition-colors hover:bg-indigo/5">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-pixel text-2xl text-bone glow-indigo">{w.org}</h3>
-                  <span className="font-pixel text-xs tracking-widest text-indigo">{w.when}</span>
+              <article key={w.org} className="pixel-frame p-4 sm:p-6 transition-colors hover:bg-indigo/5">
+                <div className="flex items-baseline justify-between gap-3 sm:gap-4">
+                  <h3 className="font-pixel text-xl sm:text-2xl text-bone glow-indigo">{w.org}</h3>
+                  <span className="font-pixel text-[10px] sm:text-xs tracking-widest text-indigo">{w.when}</span>
                 </div>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-bone/60">{w.role}</p>
+                <p className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-bone/60">{w.role}</p>
                 {w.paras.map((p, i) => (
-                  <p key={i} className="mt-3 text-sm leading-relaxed text-bone/85">{p}</p>
+                  <p key={i} className="mt-2.5 sm:mt-3 text-xs sm:text-sm leading-relaxed text-bone/85">{p}</p>
                 ))}
               </article>
             ))}
@@ -815,13 +815,12 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
 // ── Pixel progress bar ─────────────────────────────────────────────────────
 function PixelBar({ filled, total = 16, baseDelay = 0 }: { filled: number; total?: number; baseDelay?: number }) {
   return (
-    <div className="mt-3 flex gap-[3px]">
+    <div className="mt-2.5 sm:mt-3 flex gap-[2px] sm:gap-[3px]">
       {Array.from({ length: total }).map((_, i) => (
         <div
           key={i}
+          className="w-1.5 h-1.5 sm:w-2 sm:h-2"
           style={{
-            width: 8,
-            height: 8,
             background: i < filled ? "rgb(79 70 229)" : "rgb(79 70 229 / 0.12)",
             transition: `background 180ms ${baseDelay + i * 35}ms`,
           }}
@@ -852,7 +851,7 @@ function AnimatedStat({
   const count = useCountUp(rawValue, active, 1400);
   return (
     <div
-      className="pixel-frame p-6 transition-colors hover:bg-indigo/5"
+      className="pixel-frame p-4 sm:p-6 transition-colors hover:bg-indigo/5"
       style={{
         opacity: active ? 1 : 0,
         transform: active ? "translateY(0)" : "translateY(16px)",
@@ -860,13 +859,13 @@ function AnimatedStat({
       }}
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="font-pixel text-5xl leading-none text-bone glow-indigo md:text-6xl">
+        <div className="font-pixel text-3xl sm:text-5xl leading-none text-bone glow-indigo md:text-6xl">
           {fmt(count)}
         </div>
-        <Icon className="mt-1 h-6 w-6 shrink-0 text-indigo" />
+        <Icon className="mt-1 h-5 w-5 sm:h-6 sm:w-6 shrink-0 text-indigo" />
       </div>
       <PixelBar filled={active ? bars : 0} baseDelay={delay} />
-      <div className="mt-3 text-xs uppercase tracking-[0.25em] text-bone/70">{label}</div>
+      <div className="mt-2.5 sm:mt-3 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-bone/70">{label}</div>
     </div>
   );
 }
@@ -884,15 +883,15 @@ function ColumnList({
 }) {
   return (
     <div>
-      <h3 className="mb-3 font-pixel text-base tracking-widest text-indigo">{heading}</h3>
-      <ul className="space-y-2 border-l-2 border-indigo/40 pl-4">
+      <h3 className="mb-2 sm:mb-3 font-pixel text-sm sm:text-base tracking-widest text-indigo">{heading}</h3>
+      <ul className="space-y-1.5 sm:space-y-2 border-l-2 border-indigo/40 pl-3 sm:pl-4">
         {items.map((i) => (
           <li key={i.href}>
             <a
               href={i.href}
               target="_blank"
               rel="noreferrer"
-              className="pixel-underline inline-flex items-start gap-2 text-sm text-bone/90"
+              className="pixel-underline inline-flex items-start gap-1.5 sm:gap-2 text-xs sm:text-sm text-bone/90"
             >
               <span className="text-indigo">›</span>
               <span>{i.title}</span>
@@ -905,7 +904,7 @@ function ColumnList({
         href={allHref}
         target="_blank"
         rel="noreferrer"
-        className="pixel-underline mt-4 inline-flex items-center gap-2 font-pixel text-base text-bone"
+        className="pixel-underline mt-3 sm:mt-4 inline-flex items-center gap-2 font-pixel text-sm sm:text-base text-bone"
       >
         {allLabel} <ArrowUpRight className="h-4 w-4" />
       </a>
@@ -925,12 +924,12 @@ function ProjectCard({
   body: string;
 }) {
   const content = (
-    <div className="pixel-frame h-full p-7 transition-colors hover:bg-indigo/5">
-      <h3 className="font-pixel text-4xl text-bone glow-indigo">{name}</h3>
-      <p className="mt-2 text-xs uppercase tracking-[0.25em] text-indigo">{stack}</p>
-      <p className="mt-5 text-bone/85">{body}</p>
+    <div className="pixel-frame h-full p-4 sm:p-7 transition-colors hover:bg-indigo/5">
+      <h3 className="font-pixel text-2xl sm:text-4xl text-bone glow-indigo">{name}</h3>
+      <p className="mt-1.5 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-indigo">{stack}</p>
+      <p className="mt-3 sm:mt-5 text-sm sm:text-base text-bone/85">{body}</p>
       {href && (
-        <span className="pixel-underline mt-6 inline-flex items-center gap-2 font-pixel text-lg text-bone">
+        <span className="pixel-underline mt-4 sm:mt-6 inline-flex items-center gap-1.5 sm:gap-2 font-pixel text-sm sm:text-lg text-bone">
           visit <ArrowUpRight className="h-4 w-4" />
         </span>
       )}
@@ -951,11 +950,11 @@ function DistTile({ head, body, href }: { head: string; body: string; href: stri
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="pixel-frame block p-6 transition-colors hover:bg-indigo/5"
+      className="pixel-frame block p-4 sm:p-6 transition-colors hover:bg-indigo/5"
     >
-      <h3 className="font-pixel text-2xl text-bone glow-indigo">{head}</h3>
-      <p className="mt-3 text-sm text-bone/85">{body}</p>
-      <span className="pixel-underline mt-3 inline-flex items-center gap-2 font-pixel text-sm text-indigo">
+      <h3 className="font-pixel text-xl sm:text-2xl text-bone glow-indigo">{head}</h3>
+      <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-bone/85">{body}</p>
+      <span className="pixel-underline mt-2 sm:mt-3 inline-flex items-center gap-1.5 sm:gap-2 font-pixel text-xs sm:text-sm text-indigo">
         open <ArrowUpRight className="h-3.5 w-3.5" />
       </span>
     </a>
@@ -964,10 +963,10 @@ function DistTile({ head, body, href }: { head: string; body: string; href: stri
 
 function Quote({ body, by }: { body: string; by: string }) {
   return (
-    <figure className="pixel-frame p-7">
-      <div className="mb-3 font-pixel text-3xl text-indigo">"</div>
-      <blockquote className="text-lg leading-relaxed text-bone/90">{body}</blockquote>
-      <figcaption className="mt-4 font-pixel text-sm tracking-[0.25em] text-indigo">— {by}</figcaption>
+    <figure className="pixel-frame p-4 sm:p-7">
+      <div className="mb-1.5 sm:mb-3 font-pixel text-2xl sm:text-3xl text-indigo">"</div>
+      <blockquote className="text-sm sm:text-lg leading-relaxed text-bone/90">{body}</blockquote>
+      <figcaption className="mt-3 sm:mt-4 font-pixel text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] text-indigo">— {by}</figcaption>
     </figure>
   );
 }

@@ -5,16 +5,26 @@
 /* Theme tokens as rgb triplets so Tailwind alpha modifiers work. */
 /* Responsive bottom padding for sections — clears the PixelCD at all scales */
 :root {
-  --section-pb: min(20vh, 130px);
+  --section-pb: min(12vh, 80px);
+  --section-pb-radius: 40px;
 }
 @media (min-width: 640px) {
-  :root { --section-pb: min(22vh, 170px); }
+  :root {
+    --section-pb: min(16vh, 120px);
+    --section-pb-radius: 56px;
+  }
 }
 @media (min-width: 768px) {
-  :root { --section-pb: min(24vh, 200px); }
+  :root {
+    --section-pb: min(24vh, 200px);
+    --section-pb-radius: 72px;
+  }
 }
 @media (min-width: 1024px) {
-  :root { --section-pb: min(26vh, 220px); }
+  :root {
+    --section-pb: min(26vh, 220px);
+    --section-pb-radius: 72px;
+  }
 }
 
 :root,
