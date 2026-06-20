@@ -301,6 +301,13 @@ export default function Page() {
         <span className="text-bone/60"> to see more</span>
       </div>
 
+      {/* Mobile scroll nudge — fixed bottom-right of viewport, hidden on md+ */}
+      <div className="fixed bottom-5 right-4 z-30 text-right font-pixel text-[10px] leading-tight tracking-[0.1em] md:hidden max-w-[120px] animate-mobile-nudge">
+        <span className="text-bone/60">scroll the section you want to know more about. </span>
+        <span className="glow-indigo font-bold text-indigo"><br /> </span>
+        <span className="text-bone/60"><br />Use<br />arrows or<br />just swipe through</span>
+      </div>
+
       {/* horizontal track */}
       <div
         className="flex h-full"
@@ -503,22 +510,20 @@ export default function Page() {
           <div className="mb-6 flex gap-0 shrink-0">
             <button
               onClick={() => setEventsTab("iceberg")}
-              className={`flex items-center gap-2 border-2 px-4 py-2 font-pixel text-xs tracking-widest transition-colors ${
-                eventsTab === "iceberg"
-                  ? "border-indigo bg-indigo text-ink"
-                  : "border-indigo/40 bg-transparent text-bone/50 hover:border-indigo hover:text-bone"
-              }`}
+              className={`flex items-center gap-2 border-2 px-4 py-2 font-pixel text-xs tracking-widest transition-colors ${eventsTab === "iceberg"
+                ? "border-indigo bg-indigo text-ink"
+                : "border-indigo/40 bg-transparent text-bone/50 hover:border-indigo hover:text-bone"
+                }`}
             >
               <Calendar className="h-3.5 w-3.5" />
               iceberg &amp; olake
             </button>
             <button
               onClick={() => setEventsTab("geekroom")}
-              className={`flex items-center gap-2 border-2 border-l-0 px-4 py-2 font-pixel text-xs tracking-widest transition-colors ${
-                eventsTab === "geekroom"
-                  ? "border-indigo bg-indigo text-ink"
-                  : "border-indigo/40 bg-transparent text-bone/50 hover:border-indigo hover:text-bone"
-              }`}
+              className={`flex items-center gap-2 border-2 border-l-0 px-4 py-2 font-pixel text-xs tracking-widest transition-colors ${eventsTab === "geekroom"
+                ? "border-indigo bg-indigo text-ink"
+                : "border-indigo/40 bg-transparent text-bone/50 hover:border-indigo hover:text-bone"
+                }`}
             >
               <Users className="h-3.5 w-3.5" />
               geekroom
@@ -765,7 +770,7 @@ export default function Page() {
         aria-label="previous track"
         onClick={() => go(-1)}
         disabled={active === 0}
-        className="fixed left-2 top-1/2 z-30 -translate-y-1/2 border-2 border-indigo bg-ink/80 p-2.5 text-indigo backdrop-blur transition-opacity hover:opacity-70 disabled:opacity-20 md:hidden"
+        className="fixed left-2 top-[70%] z-30 -translate-y-1/2 border-2 border-indigo bg-ink/80 p-2.5 text-indigo backdrop-blur transition-opacity hover:opacity-70 disabled:opacity-20 md:hidden"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
@@ -773,7 +778,7 @@ export default function Page() {
         aria-label="next track"
         onClick={() => go(1)}
         disabled={active === TOTAL - 1}
-        className="fixed right-2 top-1/2 z-30 -translate-y-1/2 border-2 border-indigo bg-ink/80 p-2.5 text-indigo backdrop-blur transition-opacity hover:opacity-70 disabled:opacity-20 md:hidden"
+        className="fixed right-2 top-[70%] z-30 -translate-y-1/2 border-2 border-indigo bg-ink/80 p-2.5 text-indigo backdrop-blur transition-opacity hover:opacity-70 disabled:opacity-20 md:hidden"
       >
         <ChevronRight className="h-5 w-5" />
       </button>
