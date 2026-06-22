@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   title: "Akshay Kumar Sharma — Developer Relations Engineer",
   description:
     "Developer Relations engineer who builds communities and ships content.",
-  metadataBase: new URL("https://akshaysharma.space"),
+  metadataBase: new URL("https://dev-voyager.space"),
   openGraph: {
     title: "Akshay Kumar Sharma — Developer Relations Engineer",
     description:
       "Developer Relations engineer who builds communities and ships content.",
-    url: "https://akshaysharma.space",
+    url: "https://dev-voyager.space",
     siteName: "Akshay Kumar Sharma Portfolio",
     locale: "en_US",
     type: "website",
