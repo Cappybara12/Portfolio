@@ -276,6 +276,14 @@ export default function Page() {
           akshay.sharma <span className="text-bone/40 hidden sm:inline">// portfolio</span>
         </div>
         <div className="flex items-center gap-4">
+          <a
+            href="https://drive.google.com/file/d/1zpcK888lMS1cNvn1ROUNjKG85WbK3uyn/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-pixel text-xs tracking-[0.2em] text-indigo hover:text-bone sm:text-sm sm:tracking-[0.25em] mr-2"
+          >
+            [ resume ]
+          </a>
           <div className="hidden font-pixel text-base tracking-[0.3em] text-bone/70 md:block">
             <span className="text-indigo">{trackId}</span>
             <span className="text-bone/40"> / {totalStr}</span>
@@ -334,8 +342,10 @@ export default function Page() {
             </p>
             <div className="mt-12 flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
               <SocialIcons />
-              <div className="font-pixel text-base tracking-[0.25em] text-bone/40">
-                → scroll · arrow keys · or swipe
+              <div className="flex flex-col gap-2">
+                <div className="font-pixel text-xs tracking-[0.25em] text-bone/40 sm:text-sm">
+                  → scroll · arrow keys · or swipe
+                </div>
               </div>
             </div>
           </div>
@@ -624,7 +634,7 @@ export default function Page() {
         </Section>
 
         {/* 06 WORK */}
-        <Section id="work" index={9} active={active} title="work" kicker="résumé">
+        <Section id="work" index={9} active={active} title="work" kicker="experience">
           <div className="grid gap-5 md:grid-cols-2">
             {WORK.map((w) => (
               <article key={w.org} className="pixel-frame p-4 sm:p-6 transition-colors hover:bg-indigo/5">
@@ -639,6 +649,7 @@ export default function Page() {
               </article>
             ))}
           </div>
+          {/* Resume link removed as it is now in the top-right header */}
         </Section>
 
         {/* 07 PROJECTS */}
