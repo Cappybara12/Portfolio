@@ -123,6 +123,15 @@ body {
 .pixel-frame::before { top: -6px; left: -6px; }
 .pixel-frame::after { bottom: -6px; right: -6px; }
 
+.pixel-frame-orange {
+  border-color: rgb(249 115 22);
+  background: rgb(249 115 22 / 0.08);
+}
+.pixel-frame-orange::before,
+.pixel-frame-orange::after {
+  border-color: rgb(249 115 22);
+}
+
 .pixel-underline {
   position: relative;
   display: inline-block;

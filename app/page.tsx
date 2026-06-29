@@ -12,7 +12,7 @@ import LinkedInEmbed from "@/components/LinkedInEmbed";
 import XEmbed from "@/components/XEmbed";
 import ThemeToggle from "@/components/ThemeToggle";
 import { TRACKS } from "@/lib/tracks";
-import { ArrowUpRight, Mail, ChevronLeft, ChevronRight, Calendar, Users, Zap, Globe, Eye, FileText, Play, Trophy } from "lucide-react";
+import { ArrowUpRight, Mail, ChevronLeft, ChevronRight, Calendar, Users, Zap, Globe, Eye, FileText, Play, Trophy, Github } from "lucide-react";
 
 const VIDEOS = [
   { id: "SeZGYUo74QI", title: "OpenTelemetry Full Course" },
@@ -130,7 +130,7 @@ const GEEKROOM_EVENTS = [
   },
 ];
 
-const WORK = [
+const WORK: { org: string; role: string; when: string; paras: React.ReactNode[] }[] = [
   {
     org: "signoz",
     role: "developer relations engineer",
@@ -141,21 +141,21 @@ const WORK = [
     ],
   },
   {
+    org: "tensorstax",
+    role: "software engineer",
+    when: "oct 2024",
+    paras: [
+      "joined an early-stage ai data platform building codex, an ai-driven etl tool. took full-stack ownership: efficient payload generation, apache superset dashboards reaching 80%+ chart accuracy in ai-driven analytics, automated the ml deployment pipeline on azure for seamless infra rollout and scaling.",
+      <>the work spanned product engineering, infrastructure, and data quality. platform later <strong className="font-bold text-bone glow-indigo">acquired by snowflake</strong>.</>,
+    ],
+  },
+  {
     org: "datazip / olake",
     role: "developer relations engineer",
     when: "jul 2025 — feb 2026",
     paras: [
       "owned developer content and community for olake, the open-source data lakehouse. authored 9 deep technical blogs accumulating 150k+ impressions covering iceberg deletion strategies, mysql/postgres/mssql/db2 sync pipelines, and end-to-end lakehouse architecture with trino, polaris, lakekeeper, prestodb.",
       "conducted india's first official apache iceberg meetup in bangalore — co-hosted with aws, minio, puppygraph, e6data, firebolt, fivetran. organised multiple olake community meetups + workshops. coordinated hacktoberfest and gsoc programs. ran seo strategy that lifted site performance by 30%.",
-    ],
-  },
-  {
-    org: "tensorstax",
-    role: "software engineer",
-    when: "oct 2024",
-    paras: [
-      "joined an early-stage ai data platform building codex, an ai-driven etl tool. took full-stack ownership: efficient payload generation, apache superset dashboards reaching 80%+ chart accuracy in ai-driven analytics, automated the ml deployment pipeline on azure for seamless infra rollout and scaling.",
-      "the work spanned product engineering, infrastructure, and data quality. platform later acquired by snowflake.",
     ],
   },
   {
@@ -361,161 +361,8 @@ export default function Page() {
           </div>
         </Section>
 
-        {/* 02 CONTENT */}
-        <Section id="content" index={2} active={active} title="content" kicker="reach">
-          <div className="grid gap-6 md:grid-cols-2">
-            <AnimatedStat rawValue={500000} fmt={(n) => (n >= 1000 ? Math.floor(n / 1000) + "K+" : n + "+")} label="linkedin impressions" icon={Users} bars={16} active={active === 2} delay={0} />
-            <AnimatedStat rawValue={150000} fmt={(n) => (n >= 1000 ? Math.floor(n / 1000) + "K+" : n + "+")} label="olake blog impressions" icon={Eye} bars={12} active={active === 2} delay={150} />
-            <AnimatedStat rawValue={30} fmt={(n) => n + "+"} label="medium articles · 9 olake articles" icon={FileText} bars={6} active={active === 2} delay={300} />
-            <AnimatedStat rawValue={10} fmt={(n) => n + "+"} label="long-form videos · many shorts" icon={Play} bars={4} active={active === 2} delay={450} />
-          </div>
-          <p className="mt-6 max-w-3xl text-bone/80">
-            creating long-form tutorials and short-form explainers, distributed across
-            olake youtube, signoz youtube, personal linkedin, instagram, and x.
-          </p>
-        </Section>
-
-        {/* 03 VIDEOS */}
-        <Section id="videos" index={3} active={active} title="long-form videos" kicker="signoz · olake · youtube">
-          {/* SigNoz videos */}
-          <h3 className="mb-3 font-pixel text-sm tracking-[0.3em] text-indigo">signoz youtube</h3>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {VIDEOS.map((v) => (
-              <YouTubeEmbed key={v.id} id={v.id} title={v.title} />
-            ))}
-          </div>
-          <div className="mt-6">
-            <h3 className="mb-3 font-pixel text-sm tracking-[0.3em] text-indigo">
-              podcast — observability &amp; devtools
-            </h3>
-            <div className="max-w-xl">
-              <YouTubeEmbed id="XOVkaY5MmiQ" title="cto podcast — observability & developer tooling" />
-            </div>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-6">
-            <a
-              href="https://www.youtube.com/@signoz/videos"
-              target="_blank"
-              rel="noreferrer"
-              className="pixel-underline inline-flex items-center gap-2 font-pixel text-base text-bone"
-            >
-              more on signoz youtube <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="https://www.youtube.com/@olakeio"
-              target="_blank"
-              rel="noreferrer"
-              className="pixel-underline inline-flex items-center gap-2 font-pixel text-base text-bone"
-            >
-              more on olake youtube <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
-        </Section>
-
-        {/* 03.1 SHORTS + REELS */}
-        <Section id="shorts" index={4} active={active} title="short-form" kicker="shorts · reels">
-          <p className="mb-6 max-w-3xl text-bone/80">
-            short-form explainers running across youtube shorts and instagram reels.
-          </p>
-          <div className="grid gap-8 md:grid-cols-2">
-            <div>
-              <h3 className="mb-3 font-pixel text-lg tracking-widest text-indigo">youtube shorts</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {SHORTS.map((u) => (
-                  <YouTubeShortEmbed key={u} url={u} />
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="mb-3 flex items-baseline justify-between gap-3">
-                <h3 className="font-pixel text-lg tracking-widest text-indigo">instagram reels</h3>
-                <span className="font-pixel text-sm tracking-widest text-bone/70">
-                  <span className="text-indigo">@akshayat.it</span> · 1,200+ followers
-                </span>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                {REELS.map((u) => (
-                  <InstagramEmbed key={u} url={u} />
-                ))}
-              </div>
-              <a
-                href="https://instagram.com/akshayat.it"
-                target="_blank"
-                rel="noreferrer"
-                className="pixel-underline mt-4 inline-flex items-center gap-2 font-pixel text-base text-bone"
-              >
-                @akshayat.it on instagram <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </Section>
-
-        {/* 03.2 LINKEDIN */}
-        <Section id="linkedin" index={5} active={active} title="linkedin featured" kicker="500k+ impressions">
-          <p className="mb-6 max-w-3xl text-bone/80">
-            dedicated technical posts that drove 500k+ impressions and built a consistent audience over time.
-          </p>
-          <div className="grid gap-5 md:grid-cols-2">
-            {LINKEDIN_POSTS.map((p) => (
-              <LinkedInEmbed key={p.url} url={p.url} caption={p.caption} />
-            ))}
-          </div>
-          <a
-            href="https://www.linkedin.com/in/akshay-kumar-sharma-37aa55256/"
-            target="_blank"
-            rel="noreferrer"
-            className="pixel-underline mt-6 inline-flex items-center gap-2 font-pixel text-lg text-bone"
-          >
-            more on linkedin <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </Section>
-
-        {/* 03.3 X */}
-        <Section id="x" index={6} active={active} title="x posts" kicker="cappybaradeploy">
-          <div className="grid gap-5 md:grid-cols-2">
-            {X_POSTS.map((u) => (
-              <XEmbed key={u} url={u} />
-            ))}
-          </div>
-          <a
-            href="https://x.com/cappybaradeploy"
-            target="_blank"
-            rel="noreferrer"
-            className="pixel-underline mt-6 inline-flex items-center gap-2 font-pixel text-lg text-bone"
-          >
-            @cappybaradeploy on x <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </Section>
-
-        {/* 04 WRITING */}
-        <Section id="writing" index={7} active={active} title="writing" kicker="long form">
-          <div className="pixel-frame mb-6 p-4">
-            <p className="font-pixel text-xl text-bone">
-              <span className="text-indigo">9 olake articles</span>
-              <span className="text-bone/40"> · </span>
-              <span className="text-indigo">30+ medium articles</span>
-              <span className="text-bone/40"> · </span>
-              <span className="text-indigo">150k+</span> cumulative impressions
-            </p>
-          </div>
-          <div className="grid gap-10 md:grid-cols-2">
-            <ColumnList
-              heading="olake — 9 articles · 150k+ impressions"
-              items={OLAKE}
-              allHref="https://olake.io/blog/authors/akshay/"
-              allLabel="view all 9 olake articles"
-            />
-            <ColumnList
-              heading="medium — 30+ articles · selected"
-              items={MEDIUM}
-              allHref="https://medium.com/@akshayne912"
-              allLabel="view all 30+ medium articles"
-            />
-          </div>
-        </Section>
-
-        {/* 05 EVENTS */}
-        <Section id="events" index={8} active={active} title="events & workshops" kicker="iceberg · olake · geekroom">
+        {/* 02 EVENTS */}
+        <Section id="events" index={2} active={active} title="events & workshops" kicker="iceberg · olake · geekroom">
 
           {/* ── Tab switcher ─────────────────────────────────────── */}
           <div className="mb-6 flex gap-0 shrink-0">
@@ -633,8 +480,15 @@ export default function Page() {
           )}
         </Section>
 
-        {/* 06 WORK */}
-        <Section id="work" index={9} active={active} title="work" kicker="experience">
+        {/* 03 WORK */}
+        <Section
+          id="work"
+          index={3}
+          active={active}
+          title="work"
+          titleHref="https://www.linkedin.com/in/akshay-kumar-sharma-37aa55256/details/experience/"
+          kicker="experience"
+        >
           <div className="grid gap-5 md:grid-cols-2">
             {WORK.map((w) => (
               <article key={w.org} className="pixel-frame p-4 sm:p-6 transition-colors hover:bg-indigo/5">
@@ -649,29 +503,69 @@ export default function Page() {
               </article>
             ))}
           </div>
-          {/* Resume link removed as it is now in the top-right header */}
+          <div className="mt-6 flex justify-end">
+            <a
+              href="https://www.linkedin.com/in/akshay-kumar-sharma-37aa55256/details/experience/"
+              target="_blank"
+              rel="noreferrer"
+              className="pixel-underline inline-flex items-center gap-2 font-pixel text-base text-bone"
+            >
+              internships &amp; more <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
         </Section>
 
-        {/* 07 PROJECTS */}
-        <Section id="projects" index={10} active={active} title="projects" kicker="ships">
+        {/* 04 WHAT I SHIPPED */}
+        <Section id="projects" index={4} active={active} title="what i shipped" kicker="ships">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <ProjectCard
               name="nonilion"
               href="https://nonilion.com"
+              accent="orange"
               stack="next.js · livekit · gcp · docker"
-              body="immersive virtual meeting platform. 3k+ users. #5 product of the day on product hunt. sub-meeting spaces with 3d avatars, spatial audio using livekit for real-time webrtc, jira sdk integration for in-meeting task management."
+              body={
+                <>
+                  immersive virtual meeting platform. 3k+ users.{" "}
+                  <strong className="font-bold text-orange-400">#5 product of the day on product hunt</strong>.
+                  sub-meeting spaces with 3d avatars, spatial audio using livekit for real-time webrtc, jira sdk
+                  integration for in-meeting task management.
+                </>
+              }
             />
             <ProjectCard
               name="balencai"
+              githubHref="https://github.com/Cappybara12/backend-balenci"
               stack="langchain · mastra · rag · openai"
               body="finance document automation via ai agents. mastra agentic workflows for extracting financial fields from pdfs; rag pipeline with vector embeddings for natural language querying."
             />
             <ProjectCard
               name="granite pill"
               href="https://github.com/Cappybara12/wispr-parody"
+              videoHref="https://www.linkedin.com/posts/akshay-kumar-sharma-devvoyager_buildinpublic-llm-ai-ugcPost-7441770470921834496-KhWo/"
               stack="electron · python · ibm granite · local asr"
               body="floating always-on-top speech-to-text desktop app for apple silicon macs. transcribes audio entirely on-device with ibm's granite 4.0 — no cloud. shift+x hotkey, instant clipboard copy."
             />
+          </div>
+          <div className="pixel-frame pixel-frame-orange mt-6 p-4 sm:p-6">
+            <div className="mb-3 flex items-baseline justify-between gap-3">
+              <h3 className="font-pixel text-lg text-bone glow-indigo">nonilion — live preview</h3>
+              <a
+                href="https://nonilion.com"
+                target="_blank"
+                rel="noreferrer"
+                className="pixel-underline inline-flex items-center gap-1.5 font-pixel text-xs text-orange-400"
+              >
+                open nonilion.com <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+            <div className="overflow-hidden border-2 border-orange-500/60">
+              <iframe
+                src="https://nonilion.com"
+                title="nonilion live preview"
+                loading="lazy"
+                className="h-[320px] w-full sm:h-[420px]"
+              />
+            </div>
           </div>
           <a
             href="https://github.com/akshayne912"
@@ -683,11 +577,164 @@ export default function Page() {
           </a>
         </Section>
 
+        {/* 05 WRITING */}
+        <Section id="writing" index={5} active={active} title="writing" kicker="long form">
+          <div className="pixel-frame mb-6 p-4">
+            <p className="font-pixel text-xl text-bone">
+              <span className="text-indigo">9 olake articles</span>
+              <span className="text-bone/40"> · </span>
+              <span className="text-indigo">30+ medium articles</span>
+              <span className="text-bone/40"> · </span>
+              <span className="text-indigo">150k+</span> cumulative impressions
+            </p>
+          </div>
+          <div className="grid gap-10 md:grid-cols-2">
+            <ColumnList
+              heading="olake — 9 articles · 150k+ impressions"
+              items={OLAKE}
+              allHref="https://olake.io/blog/authors/akshay/"
+              allLabel="view all 9 olake articles"
+            />
+            <ColumnList
+              heading="medium — 30+ articles · selected"
+              items={MEDIUM}
+              allHref="https://medium.com/@akshayne912"
+              allLabel="view all 30+ medium articles"
+            />
+          </div>
+        </Section>
+
+        {/* 06 CONTENT */}
+        <Section id="content" index={6} active={active} title="content" kicker="reach">
+          <div className="grid gap-6 md:grid-cols-2">
+            <AnimatedStat rawValue={500000} fmt={(n) => (n >= 1000 ? Math.floor(n / 1000) + "K+" : n + "+")} label="linkedin impressions" icon={Users} bars={16} active={active === 6} delay={0} />
+            <AnimatedStat rawValue={150000} fmt={(n) => (n >= 1000 ? Math.floor(n / 1000) + "K+" : n + "+")} label="olake blog impressions" icon={Eye} bars={12} active={active === 6} delay={150} />
+            <AnimatedStat rawValue={30} fmt={(n) => n + "+"} label="medium articles · 9 olake articles" icon={FileText} bars={6} active={active === 6} delay={300} />
+            <AnimatedStat rawValue={10} fmt={(n) => n + "+"} label="long-form videos · many shorts" icon={Play} bars={4} active={active === 6} delay={450} />
+          </div>
+          <p className="mt-6 max-w-3xl text-bone/80">
+            creating long-form tutorials and short-form explainers, distributed across
+            olake youtube, signoz youtube, personal linkedin, instagram, and x.
+          </p>
+        </Section>
+
+        {/* 07 VIDEOS */}
+        <Section id="videos" index={7} active={active} title="long-form videos" kicker="signoz · olake · youtube">
+          {/* SigNoz videos */}
+          <h3 className="mb-3 font-pixel text-sm tracking-[0.3em] text-indigo">signoz youtube</h3>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {VIDEOS.map((v) => (
+              <YouTubeEmbed key={v.id} id={v.id} title={v.title} />
+            ))}
+          </div>
+          <div className="mt-6">
+            <h3 className="mb-3 font-pixel text-sm tracking-[0.3em] text-indigo">
+              podcast — observability &amp; devtools
+            </h3>
+            <div className="max-w-xl">
+              <YouTubeEmbed id="XOVkaY5MmiQ" title="cto podcast — observability & developer tooling" />
+            </div>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-6">
+            <a
+              href="https://www.youtube.com/@signoz/videos"
+              target="_blank"
+              rel="noreferrer"
+              className="pixel-underline inline-flex items-center gap-2 font-pixel text-base text-bone"
+            >
+              more on signoz youtube <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://www.youtube.com/@olakeio"
+              target="_blank"
+              rel="noreferrer"
+              className="pixel-underline inline-flex items-center gap-2 font-pixel text-base text-bone"
+            >
+              more on olake youtube <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        </Section>
+
+        {/* 07.1 SHORTS + REELS */}
+        <Section id="shorts" index={8} active={active} title="short-form" kicker="shorts · reels">
+          <p className="mb-6 max-w-3xl text-bone/80">
+            short-form explainers running across youtube shorts and instagram reels.
+          </p>
+          <div className="grid gap-8 md:grid-cols-2">
+            <div>
+              <h3 className="mb-3 font-pixel text-lg tracking-widest text-indigo">youtube shorts</h3>
+              <div className="grid grid-cols-2 gap-3">
+                {SHORTS.map((u) => (
+                  <YouTubeShortEmbed key={u} url={u} />
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="mb-3 flex items-baseline justify-between gap-3">
+                <h3 className="font-pixel text-lg tracking-widest text-indigo">instagram reels</h3>
+                <span className="font-pixel text-sm tracking-widest text-bone/70">
+                  <span className="text-indigo">@akshayat.it</span> · 1,200+ followers
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {REELS.map((u) => (
+                  <InstagramEmbed key={u} url={u} />
+                ))}
+              </div>
+              <a
+                href="https://instagram.com/akshayat.it"
+                target="_blank"
+                rel="noreferrer"
+                className="pixel-underline mt-4 inline-flex items-center gap-2 font-pixel text-base text-bone"
+              >
+                @akshayat.it on instagram <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </Section>
+
+        {/* 07.2 LINKEDIN */}
+        <Section id="linkedin" index={9} active={active} title="linkedin featured" kicker="500k+ impressions">
+          <p className="mb-6 max-w-3xl text-bone/80">
+            dedicated technical posts that drove 500k+ impressions and built a consistent audience over time.
+          </p>
+          <div className="grid gap-5 md:grid-cols-2">
+            {LINKEDIN_POSTS.map((p) => (
+              <LinkedInEmbed key={p.url} url={p.url} caption={p.caption} />
+            ))}
+          </div>
+          <a
+            href="https://www.linkedin.com/in/akshay-kumar-sharma-37aa55256/"
+            target="_blank"
+            rel="noreferrer"
+            className="pixel-underline mt-6 inline-flex items-center gap-2 font-pixel text-lg text-bone"
+          >
+            more on linkedin <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </Section>
+
+        {/* 07.3 X */}
+        <Section id="x" index={10} active={active} title="x posts" kicker="cappybaradeploy">
+          <div className="grid gap-5 md:grid-cols-2">
+            {X_POSTS.map((u) => (
+              <XEmbed key={u} url={u} />
+            ))}
+          </div>
+          <a
+            href="https://x.com/cappybaradeploy"
+            target="_blank"
+            rel="noreferrer"
+            className="pixel-underline mt-6 inline-flex items-center gap-2 font-pixel text-lg text-bone"
+          >
+            @cappybaradeploy on x <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </Section>
+
         {/* 08 DISTRIBUTION */}
         <Section id="distribution" index={11} active={active} title="distribution" kicker="channels">
           <div className="grid gap-4 md:grid-cols-3">
-            <DistTile head="reddit" body="contextual video summaries targeting devs evaluating observability tools." href="https://www.reddit.com/user/cappybaradeploy" />
-            <DistTile head="hacker news" body="strategic technical post submissions." href="https://news.ycombinator.com/user?id=cappybaradeploy" />
+            <DistTile head="reddit" body="contextual video summaries targeting devs evaluating observability tools." />
+            <DistTile head="hacker news" body="strategic technical post submissions." />
             <DistTile head="linkedin" body="5k+ followers · 500k+ impressions sharing projects organically." href="https://www.linkedin.com/in/akshay-kumar-sharma-37aa55256/" />
             <DistTile head="x" body="@cappybaradeploy — technical posts and ai/observability commentary." href="https://x.com/cappybaradeploy" />
             <DistTile head="instagram" body="@akshayat.it — reels covering ai, devtools, and behind-the-scenes." href="https://instagram.com/akshayat.it" />
@@ -695,7 +742,7 @@ export default function Page() {
         </Section>
 
         {/* 09 REVIEWS */}
-        <Section id="reviews" index={12} active={active} title="what managers say" kicker="receipts">
+        <Section id="reviews" index={12} active={active} title="what team says about me" kicker="receipts">
           <div className="grid gap-6 md:grid-cols-2">
             <Quote
               body="worked with akshay for a short duration at signoz, and what stood out to me was his exceptional agency. he would always come up with creative, new content ideas and deliver promptly."
@@ -926,49 +973,92 @@ function ColumnList({
 function ProjectCard({
   name,
   href,
+  githubHref,
+  videoHref,
   stack,
   body,
+  accent,
 }: {
   name: string;
   href?: string;
+  githubHref?: string;
+  videoHref?: string;
   stack: string;
-  body: string;
+  body: React.ReactNode;
+  accent?: "orange";
 }) {
-  const content = (
-    <div className="pixel-frame h-full p-4 sm:p-7 transition-colors hover:bg-indigo/5">
-      <h3 className="font-pixel text-2xl sm:text-4xl text-bone glow-indigo">{name}</h3>
-      <p className="mt-1.5 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-indigo">{stack}</p>
-      <p className="mt-3 sm:mt-5 text-sm sm:text-base text-bone/85">{body}</p>
-      {href && (
-        <span className="pixel-underline mt-4 sm:mt-6 inline-flex items-center gap-1.5 sm:gap-2 font-pixel text-sm sm:text-lg text-bone">
-          visit <ArrowUpRight className="h-4 w-4" />
-        </span>
+  return (
+    <div
+      className={`pixel-frame relative h-full p-4 sm:p-7 transition-colors hover:bg-indigo/5 ${
+        accent === "orange" ? "pixel-frame-orange" : ""
+      }`}
+    >
+      {githubHref && (
+        <a
+          href={githubHref}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${name} on github`}
+          className="absolute right-4 top-4 sm:right-7 sm:top-7 text-bone/70 transition-colors hover:text-indigo"
+        >
+          <Github className="h-5 w-5" />
+        </a>
       )}
+      <h3 className={`font-pixel text-2xl sm:text-4xl ${accent === "orange" ? "text-orange-400" : "text-bone glow-indigo"}`}>{name}</h3>
+      <p className={`mt-1.5 sm:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] ${accent === "orange" ? "text-orange-400/80" : "text-indigo"}`}>{stack}</p>
+      <p className="mt-3 sm:mt-5 text-sm sm:text-base text-bone/85">{body}</p>
+      <div className="mt-4 sm:mt-6 flex items-center justify-between">
+        {href ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className={`pixel-underline inline-flex items-center gap-1.5 sm:gap-2 font-pixel text-sm sm:text-lg ${accent === "orange" ? "text-orange-400" : "text-bone"}`}
+          >
+            visit <ArrowUpRight className="h-4 w-4" />
+          </a>
+        ) : (
+          <span />
+        )}
+        {videoHref && (
+          <a
+            href={videoHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${name} video`}
+            className="text-bone/70 transition-colors hover:text-indigo"
+          >
+            <Play className="h-5 w-5" />
+          </a>
+        )}
+      </div>
     </div>
-  );
-  return href ? (
-    <a href={href} target="_blank" rel="noreferrer" className="block">
-      {content}
-    </a>
-  ) : (
-    content
   );
 }
 
-function DistTile({ head, body, href }: { head: string; body: string; href: string }) {
-  return (
+function DistTile({ head, body, href }: { head: string; body: string; href?: string }) {
+  const content = (
+    <>
+      <h3 className="font-pixel text-xl sm:text-2xl text-bone glow-indigo">{head}</h3>
+      <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-bone/85">{body}</p>
+      {href && (
+        <span className="pixel-underline mt-2 sm:mt-3 inline-flex items-center gap-1.5 sm:gap-2 font-pixel text-xs sm:text-sm text-indigo">
+          open <ArrowUpRight className="h-3.5 w-3.5" />
+        </span>
+      )}
+    </>
+  );
+  return href ? (
     <a
       href={href}
       target="_blank"
       rel="noreferrer"
       className="pixel-frame block p-4 sm:p-6 transition-colors hover:bg-indigo/5"
     >
-      <h3 className="font-pixel text-xl sm:text-2xl text-bone glow-indigo">{head}</h3>
-      <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-bone/85">{body}</p>
-      <span className="pixel-underline mt-2 sm:mt-3 inline-flex items-center gap-1.5 sm:gap-2 font-pixel text-xs sm:text-sm text-indigo">
-        open <ArrowUpRight className="h-3.5 w-3.5" />
-      </span>
+      {content}
     </a>
+  ) : (
+    <div className="pixel-frame block p-4 sm:p-6">{content}</div>
   );
 }
 

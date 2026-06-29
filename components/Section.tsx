@@ -9,6 +9,7 @@ type Props = {
   index: number;
   active: number;
   title?: string;
+  titleHref?: string;
   kicker?: string;
   children: React.ReactNode;
 };
@@ -18,6 +19,7 @@ export default function Section({
   index,
   active,
   title,
+  titleHref,
   kicker,
   children,
 }: Props) {
@@ -85,7 +87,18 @@ export default function Section({
               {kicker && <span className="text-bone/40">// {kicker}</span>}
             </div>
             <h2 className="font-pixel text-2xl sm:text-4xl md:text-7xl leading-none tracking-wider">
-              <span className="text-bone glow-indigo">{title}</span>
+              {titleHref ? (
+                <a
+                  href={titleHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-bone glow-indigo underline underline-offset-8 decoration-2 decoration-indigo transition-colors hover:text-indigo"
+                >
+                  {title}
+                </a>
+              ) : (
+                <span className="text-bone glow-indigo">{title}</span>
+              )}
             </h2>
             <div className="mt-2 sm:mt-4 h-[2px] w-16 sm:w-24 bg-indigo" />
           </header>
