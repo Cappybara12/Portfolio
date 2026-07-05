@@ -227,6 +227,14 @@ body {
     glow-pulse 3s ease-in-out infinite alternate 1.2s;
 }
 
+/* Blog pages: normal vertical document flow, no horizontal pager/overflow lock. */
+html.blog-mode,
+html.blog-mode body {
+  overflow: auto;
+  height: auto;
+  min-height: 100vh;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
