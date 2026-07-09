@@ -11,13 +11,239 @@ export type BlogPost = {
   tags: string[];
   coverImage: string;
   sections: { heading: string; blocks: BlogBlock[] }[];
+  faqs?: { question: string; answer: string }[];
 };
 
 const IMG_DIR = "/blog/i-gave-a-local-ai-a-memory-of-my-codebase";
 const IMG_DIR_2 = "/blog/prediction-market-bot-scam-explained";
 const IMG_DIR_3 = "/blog/virality-is-the-product";
+const IMG_DIR_4 = "/blog/meta-muse-spark-1-1";
 
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    slug: "meta-muse-spark-1-1",
+    title: "Meta Muse Spark 1.1: Inside Meta's Cheapest, Fastest Agentic AI Model Yet",
+    description:
+      "On July 9, 2026, Meta launched Muse Spark 1.1, featuring their first paid public developer API, OpenAI/Anthropic SDK compatibility, and aggressive pricing at a fraction of SOTA costs.",
+    date: "2026-07-09",
+    readingTime: "6 min read",
+    tags: ["ai", "developer-tools", "meta", "benchmarks"],
+    coverImage: `${IMG_DIR_4}/chart-comparison.png`,
+    sections: [
+      {
+        heading: "zuckerberg's announcement and the api pivot",
+        blocks: [
+          {
+            type: "p",
+            text: "On July 9, 2026, Meta released Muse Spark 1.1, an upgraded version of the frontier AI model it introduced just three months earlier, and paired it with something Meta has never shipped before: a paid, public developer API. Mark Zuckerberg announced the release on X (formerly Twitter), calling it \"a strong agentic and coding model at a very low price,\" available through the new Meta Model API and inside Meta AI. Alexandr Wang, Meta's chief AI officer and the executive leading Meta Superintelligence Labs (MSL), framed coding and agentic performance as the release's core focus.",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/zuck-tweet.png`,
+            alt: "Mark Zuckerberg's tweet on X announcing Muse Spark 1.1",
+            caption: "Mark Zuckerberg breaking the news on X.",
+          },
+          {
+            type: "p",
+            text: "The launch lands on an unusually crowded day for the AI industry — xAI and Cursor shipped Grok 4.5 just a day earlier — and it marks Meta's first real entry into the commercial AI model API business, an area it had avoided for years while giving away Llama as free, open-weight models.",
+          },
+        ],
+      },
+      {
+        heading: "why zuckerberg posted on x, not threads",
+        blocks: [
+          {
+            type: "p",
+            text: "One detail worth noting before getting into the specs: Zuckerberg broke the news of Muse Spark 1.1 in a thread on X — not on Threads, Meta's own X competitor. It's a small but telling choice. Threads has real scale at this point, but X remains where the AI industry's developers, researchers, and journalists actually argue about model releases in real time; a benchmark chart posted there gets quote-tweeted, picked apart, and amplified by the exact audience Meta needs to reach — competing lab researchers, AI newsletter writers, and developers deciding which API to build on next.",
+          },
+          {
+            type: "p",
+            text: "Posting a major model launch on a rival's platform instead of your own is a pretty clear signal that reach and conversation mattered more to Meta here than platform loyalty. It's consistent with how MSL has handled every release since Wang took over: benchmarks first, distribution second.",
+          },
+        ],
+      },
+      {
+        heading: "from llama 4 to muse spark: the backstory",
+        blocks: [
+          {
+            type: "p",
+            text: "To understand why this release matters, it helps to know what came before it. Muse Spark 1.0 launched in April 2026 as the first model out of Meta Superintelligence Labs, the division Zuckerberg built around Alexandr Wang after paying $14.3 billion in June 2025 for a 49% stake in Scale AI and installing Wang as Meta's first chief AI officer. That reorganization followed a rough stretch for Meta's AI ambitions: Llama 4 Maverick and Scout, released in April 2025, were widely seen as behind OpenAI, Anthropic, and Google on the benchmarks that defined the frontier.",
+          },
+          {
+            type: "p",
+            text: "Muse Spark 1.0 was Meta's reset — and its first frontier model released as a closed, proprietary system rather than open weights. Independent testing from Artificial Analysis put it at 52 on their Intelligence Index, a composite reasoning score, behind Gemini 3.1 Pro, GPT-5.4, and Claude Opus 4.6, but a massive jump from Llama 4's score in the high teens. It was strong on vision and reasoning but had one clear, Meta-acknowledged weakness: coding and agentic tool use lagged the frontier labs, and there was no API — it only powered Meta AI, Facebook, Instagram, and WhatsApp. Muse Spark 1.1 is Meta's answer to that gap, arriving roughly three months later.",
+          },
+        ],
+      },
+      {
+        heading: "what's actually new in muse spark 1.1",
+        blocks: [
+          {
+            type: "p",
+            text: "Meta's own framing is that 1.1 is \"a significant upgrade\" concentrated in four areas — tool use, computer use, coding, and multimodal understanding — all built around active management of a 1-million-token context window.",
+          },
+          {
+            type: "p",
+            text: "Agentic orchestration and subagent delegation: The model is trained to act as a \"main agent\" that gathers context, builds a plan, and delegates pieces of a task to parallel subagents, which in turn know when to execute independently and when to escalate a problem back up the chain. Meta says this multi-agent orchestration is specifically trained to reduce end-to-end latency on complex, multi-step projects rather than reasoning through every step sequentially. The model also zero-shot generalizes to tools it has never seen before — including new MCP (Model Context Protocol) servers and custom skills — and it actively manages its own million-token context, deciding what to remember, what to retrieve from far earlier in a session, and what to compress as a task runs long.",
+          },
+          {
+            type: "p",
+            text: "Computer use: Instead of clicking through a graphical interface one step at a time, the model decides when to write and run a script versus when to interact with the UI directly, and it can batch multiple actions into a single step. In one demo, it's given smartphone video of a product, pulls the relevant photos and details out of the footage, and then operates a browser end-to-end to create a Facebook Marketplace listing.",
+          },
+          {
+            type: "p",
+            text: "Coding: This was the most-cited weakness of the original Muse Spark, and it's where 1.1's internal numbers move the most. Meta says the model can now diagnose and fix bugs in large, complex codebases, implement new features inside enterprise-grade systems, and execute large-scale code migrations. It was built to work smoothly inside popular agentic coding harnesses like OpenCode, supporting planning mode, subagent delegation, and context compaction. In one demo, it builds a chat web app, takes automated screenshots to catch user-visible bugs, traces them back to the responsible code, and validates its own fixes.",
+          },
+          {
+            type: "p",
+            text: "Multimodal reasoning: Meta highlights visual-to-code generation (turning a screenshot or mockup into working code), ultra-descriptive image and video captioning, and workflows where perception and action have to happen together — inspecting an image or video, holding onto the details across a long session, and acting on them later while operating a computer.",
+          },
+        ],
+      },
+      {
+        heading: "the meta model api: pricing and stacks",
+        blocks: [
+          {
+            type: "p",
+            text: "The bigger structural story may be the API itself. For the first time, outside developers can build directly on a Meta frontier model instead of relying on open Llama weights or Meta's first-party apps. The Meta Model API is now in public preview for US developers and is designed as a near drop-in replacement for existing tooling — it speaks both the OpenAI SDK (Chat Completions and Responses formats) and the Anthropic Messages format, so teams don't need to rewrite integrations to try it.",
+          },
+          {
+            type: "p",
+            text: "Pricing is extremely aggressive. Input tokens are priced at $1.25 per million, and output tokens sit at $4.25 per million. This is roughly a quarter of what OpenAI and Anthropic charge for comparable frontier models (Opus 4.8 / GPT-5.5 / Fable 5), and some independent testing puts the effective cost closer to one-tenth once output-heavy agentic workloads are factored in. The model also offers a massive 1,000,000 token context window.",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/chart_1_pricing.png`,
+            alt: "API Pricing comparison chart: Meta Model API vs. Frontier Rivals",
+            caption: "Meta Model API pricing compared to Claude Opus 4.8, GPT-5.5, and Claude Fable 5.",
+          },
+        ],
+      },
+      {
+        heading: "benchmark results, explained",
+        blocks: [
+          {
+            type: "p",
+            text: "Meta published a detailed comparison of Muse Spark 1.1 against its own predecessor, Gemini 3.1 Pro (high), Claude Opus 4.8 (max), and GPT 5.5 (xhigh), split into three categories.",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/benchmark-table.png`,
+            alt: "Comprehensive benchmark comparison of Muse Spark 1.1 against competitors",
+            caption: "Meta Muse Spark 1.1 benchmark comparison table across Agent, Coding, and Multimodal tests.",
+          },
+          {
+            type: "p",
+            text: "Agentic and tool-use benchmarks: This is where Muse Spark 1.1 posts its strongest, most SOTA-adjacent results. It leads on MCP Atlas (88.1), Humanity's Last Exam with tools (62.1), and Finance Agent v2 (57.2). It posts the widest margin of the entire release on JobBench — scoring 54.7 against Opus 4.8's 48.4 and GPT 5.5's 38.3. It trails narrowly on Toolathlon-Verified (75.6 vs Opus 4.8's 76.2) and more clearly on OSWorld-Verified (80.8 vs Opus 4.8's 83.4).",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/chart_2_agent_benchmarks.png`,
+            alt: "Agentic and tool-use benchmarks comparison chart",
+            caption: "Evaluation scores for MCP Atlas, JobBench, Toolathlon, OSWorld, Humanity's Last Exam, and Finance Agent v2.",
+          },
+          {
+            type: "p",
+            text: "Coding benchmarks: Coding shows massive jumps over its own predecessor, though it still trails established leaders in some categories. On Meta's internal coding benchmark, it scores 68.3, just behind Opus 4.8 (69.0) but ahead of GPT 5.5 (67.1). Specialized coding tests show the biggest gains: VibeCodeBench nearly quadruples from 19.7 to 72.2, and SWE Atlas codebase Q&A almost doubles from 24.2 to 42.0. On Terminal-Bench 2.1 (80.0) and SWE-Bench Pro (61.5), it shows strong gains but trails Opus 4.8 and GPT 5.5. DeepSWE 1.1 (53.3) remains a relative weak point compared to GPT 5.5 (67.0).",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/chart_3_coding_benchmarks.png`,
+            alt: "Coding benchmarks comparison chart",
+            caption: "Coding benchmark scores including SWE-Bench Pro, Terminal-Bench 2.1, and DeepSWE 1.1.",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/chart_4_new_coding.png`,
+            alt: "Long-horizon agentic coding benchmarks chart",
+            caption: "Analysis of long-horizon agentic coding and codebase comprehension.",
+          },
+          {
+            type: "p",
+            text: "Multimodal benchmarks: The model shows solid, incremental gains. CharXiv Reasoning (88.4) sits just behind Opus 4.8 (89.9), and BabyVision (76.3) trails GPT 5.5 (83.6) and Opus 4.8 (81.2) but represents a huge leap over the original Muse Spark's 39.9.",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/chart_5_multimodal_benchmarks.png`,
+            alt: "Multimodal benchmarks comparison chart",
+            caption: "Scores for CharXiv Reasoning and BabyVision visual reasoning.",
+          },
+        ],
+      },
+      {
+        heading: "beating domain specialists",
+        blocks: [
+          {
+            type: "p",
+            text: "Beyond the head-to-head model comparisons, Meta highlighted wins on domain-specific benchmarks built with industry partners.",
+          },
+          {
+            type: "p",
+            text: "On Harvey's Legal Agent Bench, Muse Spark 1.1 took the #1 spot, dethroning Grok 4.5 less than 24 hours after Grok 4.5 had claimed it. On TaxEval, it took the top spot from Fable 5, meaning Meta now holds both the #1 and #2 spots. On MedScribe, it also claimed #1 from Fable 5, operating at 10x cheaper cost and twice the speed at the top result.",
+          },
+          {
+            type: "img",
+            src: `${IMG_DIR_4}/chart_6_harvey_legal_bench.png`,
+            alt: "Harvey Legal Agent Bench results",
+            caption: "Muse Spark 1.1 performance on Harvey's Legal Agent Bench compared to Grok 4.5, Opus 4.8, and GPT 5.5.",
+          },
+        ],
+      },
+      {
+        heading: "speed and price as the actual pitch",
+        blocks: [
+          {
+            type: "p",
+            text: "The benchmark tables tell only part of the story; developer and analyst reaction on launch day focused just as much on cost and latency as on raw scores. Anthropic's Opus 4.8, OpenAI's GPT-5.5, and Fable 5 were all cited as charging between $25 and $50 per million output tokens — many multiples of Meta's $4.25. Several commentators noted it is now cheaper to call Muse Spark 1.1 through the API than to self-host a comparable open-weight model.",
+          },
+          {
+            type: "p",
+            text: "On latency, independent measurements put the model at roughly a quarter the response time of Opus 4.8 and half that of GPT 5.5 across common benchmarks, attributed partly to Meta's web infrastructure and partly to inference optimizations built specifically for high-rate-limit, low-latency serving.",
+          },
+        ],
+      },
+      {
+        heading: "where muse spark 1.1 fits in the landscape",
+        blocks: [
+          {
+            type: "p",
+            text: "Taken together, Muse Spark 1.1 doesn't claim outright state-of-the-art on pure coding or multimodal benchmarks — Opus 4.8 and GPT 5.5 still lead most of those categories. Its case rests on leading or near-leading agentic and tool-use performance, aggressive price-performance economics via the new Meta Model API, and being the first Meta frontier model developers outside the company can actually build on.",
+          },
+          {
+            type: "p",
+            text: "For a company that was, as recently as Llama 4, seen as trailing the AI frontier by a wide margin, closing most of that gap across two releases in three months — while undercutting the rest of the market on price by an order of magnitude — is the real headline.",
+          },
+        ],
+      },
+      {
+        heading: "key sources and references",
+        blocks: [
+          {
+            type: "p",
+            text: "To learn more about the release, check out the following sources: [Introducing Muse Spark 1.1](https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/) (Meta AI Blog), [Muse Spark: Meta is back in the AI race](https://artificialanalysis.ai/articles/muse-spark-everything-you-need-to-know) (Artificial Analysis), and [Meta's Muse Spark 1.1 API pricing squeezes OpenAI and Anthropic](https://the-decoder.com/metas-muse-spark-1-1-api-pricing-squeezes-openai-and-anthropic-as-the-ai-price-war-heats-up/) (The Decoder).",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is Meta Muse Spark 1.1?",
+        answer: "Muse Spark 1.1 is Meta's upgraded frontier AI model focused on tool use, computer use, coding, and multimodal understanding, offered via a commercial paid API."
+      },
+      {
+        question: "How much does the Meta Model API cost?",
+        answer: "The Meta Model API is priced aggressively at $1.25 per million input tokens and $4.25 per million output tokens, which is about a quarter of typical frontier model pricing."
+      },
+      {
+        question: "Is the Meta Model API compatible with existing SDKs?",
+        answer: "Yes, it is designed as a near drop-in replacement that is compatible with both the OpenAI SDK and the Anthropic Messages format."
+      },
+      {
+        question: "Does Muse Spark 1.1 support Model Context Protocol (MCP)?",
+        answer: "Yes, it supports parallel tool calling and zero-shot generalizes to MCP servers and custom skills, scoring a SOTA 88.1 on the MCP Atlas benchmark."
+      }
+    ]
+  },
   {
     slug: "i-gave-a-local-ai-a-memory-of-my-codebase",
     title: "I gave a local AI a memory of my codebase — here's what actually happened",

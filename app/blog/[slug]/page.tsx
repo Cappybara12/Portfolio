@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -42,6 +43,42 @@ export function generateMetadata({
   };
 }
 
+const renderTextWithLinks = (text: string) => {
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: (string | React.ReactNode)[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    const [_, linkText, url] = match;
+    const matchIndex = match.index;
+
+    if (matchIndex > lastIndex) {
+      parts.push(text.substring(lastIndex, matchIndex));
+    }
+
+    parts.push(
+      <a
+        key={matchIndex}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-indigo hover:text-bone underline transition-colors"
+      >
+        {linkText}
+      </a>
+    );
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
+};
+
 export default function BlogPostPage({
   params,
 }: {
@@ -52,27 +89,54 @@ export default function BlogPostPage({
 
   const url = `https://dev-voyager.space/blog/${post.slug}`;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.date,
-    url,
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    keywords: post.tags.join(", "),
-    author: {
-      "@type": "Person",
-      name: "Akshay Kumar Sharma",
-      url: "https://dev-voyager.space",
+  const jsonLd: any[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.date,
+      url,
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      keywords: post.tags.join(", "),
+      author: {
+        "@type": "Person",
+        name: "Akshay Kumar Sharma",
+        url: "https://dev-voyager.space",
+        jobTitle: "Developer Relations & Engineer",
+        homeLocation: {
+          "@type": "Place",
+          name: "Bangalore, India",
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 12.9716,
+            longitude: 77.5946,
+          },
+        },
+      },
+      publisher: {
+        "@type": "Person",
+        name: "Akshay Kumar Sharma",
+      },
+      image: `https://dev-voyager.space${post.coverImage}`,
     },
-    publisher: {
-      "@type": "Person",
-      name: "Akshay Kumar Sharma",
-    },
-    image: `https://dev-voyager.space${post.coverImage}`,
-  };
+  ];
+
+  if (post.faqs && post.faqs.length > 0) {
+    jsonLd.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: post.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    });
+  }
 
   return (
     <article>
@@ -129,7 +193,7 @@ export default function BlogPostPage({
                     key={i}
                     className="text-sm leading-relaxed text-bone/85 sm:text-base"
                   >
-                    {block.text}
+                    {renderTextWithLinks(block.text)}
                   </p>
                 ) : (
                   <figure key={i} className="!mt-6">
