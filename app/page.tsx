@@ -553,27 +553,7 @@ export default function Page() {
               body="floating always-on-top speech-to-text desktop app for apple silicon macs. transcribes audio entirely on-device with ibm's granite 4.0 — no cloud. shift+x hotkey, instant clipboard copy."
             />
           </div>
-          <div className="pixel-frame pixel-frame-orange mt-6 p-4 sm:p-6">
-            <div className="mb-3 flex items-baseline justify-between gap-3">
-              <h3 className="font-pixel text-lg text-bone glow-indigo">nonilion — live preview</h3>
-              <a
-                href="https://nonilion.com"
-                target="_blank"
-                rel="noreferrer"
-                className="pixel-underline inline-flex items-center gap-1.5 font-pixel text-xs text-orange-400"
-              >
-                open nonilion.com <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-            <div className="overflow-hidden border-2 border-orange-500/60">
-              <iframe
-                src="https://nonilion.com"
-                title="nonilion live preview"
-                loading="lazy"
-                className="h-[320px] w-full sm:h-[420px]"
-              />
-            </div>
-          </div>
+
           <a
             href="https://github.com/akshayne912"
             target="_blank"
