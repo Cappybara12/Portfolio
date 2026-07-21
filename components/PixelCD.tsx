@@ -36,10 +36,10 @@ export default function PixelCD({ label, activeTrack, dark }: Props) {
   return (
     <div className="pointer-events-none fixed bottom-0 left-1/2 z-20 -translate-x-1/2 select-none">
       {/* scale wrapper — shrinks on mobile so the disc fits */}
-      <div className="origin-bottom scale-[0.4] sm:scale-[0.55] md:scale-[0.65] lg:scale-[0.7]">
+      <div className="origin-bottom scale-[0.24] sm:scale-[0.33] md:scale-[0.40] lg:scale-[0.45]">
       {/* character */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 bottom-[164px] sm:bottom-[268px]"
+        className="absolute left-1/2 -translate-x-1/2 bottom-[70px] sm:bottom-[164px]"
       >
         <PixelCharacter jumping={jumping} dark={dark} />
       </div>
@@ -48,7 +48,7 @@ export default function PixelCD({ label, activeTrack, dark }: Props) {
       <MusicNotes />
 
       <div
-        className="translate-y-[70%] sm:translate-y-[50%] transition-transform duration-700"
+        className="translate-y-[88%] sm:translate-y-[70%] transition-transform duration-700"
         style={{
           width: 520,
           height: 520,
@@ -95,14 +95,14 @@ export default function PixelCD({ label, activeTrack, dark }: Props) {
 
 // ── Floating music notes ────────────────────────────────────────────────────
 const NOTES_CFG = [
-  { char: "♪", x: -62, bottomOffset: 360, delay: 0.0,  duration: 2.6, size: 18 },
-  { char: "♫", x:  52, bottomOffset: 350, delay: 0.9,  duration: 2.9, size: 22 },
-  { char: "♬", x: -90, bottomOffset: 340, delay: 1.7,  duration: 2.4, size: 16 },
-  { char: "♪", x:  80, bottomOffset: 370, delay: 0.4,  duration: 3.1, size: 14 },
-  { char: "♫", x: -40, bottomOffset: 380, delay: 2.2,  duration: 2.7, size: 20 },
-  { char: "♩", x:  30, bottomOffset: 345, delay: 1.3,  duration: 2.5, size: 15 },
-  { char: "♬", x: 100, bottomOffset: 355, delay: 2.8,  duration: 2.8, size: 17 },
-  { char: "♪", x: -110,bottomOffset: 365, delay: 0.6,  duration: 3.0, size: 19 },
+  { char: "♪", x: -62, bottomOffset: 260, delay: 0.0,  duration: 2.6, size: 18 },
+  { char: "♫", x:  52, bottomOffset: 250, delay: 0.9,  duration: 2.9, size: 22 },
+  { char: "♬", x: -90, bottomOffset: 240, delay: 1.7,  duration: 2.4, size: 16 },
+  { char: "♪", x:  80, bottomOffset: 270, delay: 0.4,  duration: 3.1, size: 14 },
+  { char: "♫", x: -40, bottomOffset: 280, delay: 2.2,  duration: 2.7, size: 20 },
+  { char: "♩", x:  30, bottomOffset: 245, delay: 1.3,  duration: 2.5, size: 15 },
+  { char: "♬", x: 100, bottomOffset: 255, delay: 2.8,  duration: 2.8, size: 17 },
+  { char: "♪", x: -110,bottomOffset: 265, delay: 0.6,  duration: 3.0, size: 19 },
 ] as const;
 
 function MusicNotes() {
