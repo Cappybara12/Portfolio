@@ -72,11 +72,18 @@ const OLAKE = [
   { title: "Delete methods in Iceberg & Delta Lake compared", href: "https://olake.io/blog/iceberg-delta-lake-delete-methods-comparison" },
 ];
 
-const MEDIUM = [
+const MEDIUM_ENGINEERING = [
+  { title: "How Qdrant reduced RAG token costs by 67% with native ColBERT reranking", href: "https://medium.com/towards-artificial-intelligence/how-qdrant-reduced-rag-token-costs-by-67-with-native-colbert-reranking-98b4b4d4d553" },
+  { title: "I gave a local AI a memory of my codebase: Here’s what actually happened", href: "https://medium.com/@akshayne912/i-gave-a-local-ai-a-memory-of-my-codebase-heres-what-actually-happened-9d2ffe80f447" },
   { title: "Breaking free from OpenAI API lock-in", href: "https://medium.com/openxai/the-developers-guide-to-breaking-free-from-openai-api-lock-in-4f39c618acfb" },
   { title: "Real-time in-car SOS detection with Qdrant Edge + SigNoz", href: "https://medium.com/towards-artificial-intelligence/how-i-built-a-real-time-in-car-sos-detection-system-with-qdrant-edge-signoz-and-yamnet-4cf3bd6365a7" },
-  { title: "Why AI agents are exciting, but still hard to trust", href: "https://medium.com/@akshayne912/why-ai-agents-are-exciting-but-still-hard-to-trust-9931c69a8c70" },
   { title: "Building a fully local AI dictation model for free", href: "https://medium.com/@akshayne912/building-a-fully-local-ai-dictation-model-for-free-why-you-still-need-cloud-grade-observability-a31e14de1674" },
+];
+
+const MEDIUM_MARKETING = [
+  { title: "Why AI agents are exciting, but still hard to trust", href: "https://medium.com/@akshayne912/why-ai-agents-are-exciting-but-still-hard-to-trust-9931c69a8c70" },
+  { title: "Fake it till you make it gets adopted by the biggest organizations", href: "https://medium.com/@akshayne912/fake-it-till-you-make-it-gets-adopted-by-the-biggest-organizations-7c42682d608e" },
+  { title: "Anchor your product in bigger ecosystems", href: "https://medium.com/@akshayne912/anchor-your-product-in-bigger-ecosystems-c5a703e05f3a" },
 ];
 
 const ICEBERG_EVENTS = [
@@ -588,7 +595,7 @@ export default function Page() {
               <span className="text-indigo">150k+</span> cumulative impressions
             </p>
           </div>
-          <div className="grid gap-10 md:grid-cols-2">
+          <div className="grid gap-10 md:grid-cols-3">
             <ColumnList
               heading="olake — 9 articles · 150k+ impressions"
               items={OLAKE}
@@ -596,8 +603,14 @@ export default function Page() {
               allLabel="view all 9 olake articles"
             />
             <ColumnList
-              heading="medium — 30+ articles · selected"
-              items={MEDIUM}
+              heading="medium — engineering"
+              items={MEDIUM_ENGINEERING}
+              allHref="https://medium.com/@akshayne912"
+              allLabel="view all 30+ medium articles"
+            />
+            <ColumnList
+              heading="medium — marketing"
+              items={MEDIUM_MARKETING}
               allHref="https://medium.com/@akshayne912"
               allLabel="view all 30+ medium articles"
             />
