@@ -532,7 +532,7 @@ export default function Page() {
               stack="expo · react native · supabase · razorpay"
               body={
                 <>
-                  i&apos;m the founder of{" "}
+                  i&apos;m a co-founder of{" "}
                   <strong className="font-bold text-orange-400">wayzyy</strong> — a short-term rental marketplace
                   for india, starting in goa. verified hosts, request-to-book, chat moderation that stops
                   off-platform scams, and identity checks through digilocker.
@@ -782,7 +782,7 @@ export default function Page() {
             <Mail className="h-5 w-5" /> akshayne912@gmail.com
           </a>
           <p className="mt-8 max-w-2xl text-lg text-bone/70">
-            founder of{" "}
+            co-founder of{" "}
             <a href="https://wayzyy.com" rel="noopener" className="pixel-underline text-bone">
               wayzyy.com
             </a>{" "}

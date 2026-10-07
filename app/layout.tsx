@@ -18,7 +18,7 @@ const body = Inter({
 export const metadata: Metadata = {
   title: "Akshay Kumar Sharma — Developer Relations Engineer",
   description:
-    "Developer Relations engineer who builds communities and ships content. Founder of Wayzyy (wayzyy.com), a short-term rental marketplace in India.",
+    "Developer Relations engineer who builds communities and ships content. Co-founder of Wayzyy (wayzyy.com), a short-term rental marketplace in India.",
   metadataBase: new URL("https://dev-voyager.space"),
   openGraph: {
     title: "Akshay Kumar Sharma — Developer Relations Engineer",
@@ -46,14 +46,14 @@ const personJsonLd = {
       "@id": "https://dev-voyager.space/#akshay",
       name: "Akshay Kumar Sharma",
       url: "https://dev-voyager.space",
-      jobTitle: "Founder, Wayzyy; Developer Relations Engineer",
+      jobTitle: "Co-founder & CTO, Wayzyy; Developer Relations Engineer",
       sameAs: [
         "https://www.linkedin.com/in/akshay-kumar-sharma-37aa55256/",
         "https://x.com/cappybaradeploy",
         "https://github.com/akshayne912",
         "https://instagram.com/akshayat.it",
       ],
-      founder: { "@id": "https://wayzyy.com/#organization" },
+      worksFor: { "@id": "https://wayzyy.com/#organization" },
     },
     {
       "@type": "Organization",
@@ -62,7 +62,10 @@ const personJsonLd = {
       url: "https://wayzyy.com",
       description:
         "Wayzyy is a short-term rental marketplace in India, starting in Goa, with verified hosts.",
-      founder: { "@id": "https://dev-voyager.space/#akshay" },
+      founder: [
+        { "@id": "https://dev-voyager.space/#akshay" },
+        { "@id": "https://wayzyy.com/about#anant" },
+      ],
     },
   ],
 };
